@@ -4,16 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO Meta Tags -->
     <title>©AykolinoApps | Innovative Web-Tools & Prozessoptimierung</title>
     <meta name="description" content="Entdecken Sie maßgeschneiderte Web-Anwendungen von AykolinoApps, die Ihren digitalen Workflow revolutionieren. Sparen Sie Zeit und steigern Sie die Effizienz mit smarten Tools wie dem MBUPS-Projekt.">
     <meta name="keywords" content="Web-Tools, Prozessoptimierung, Workflow-Automatisierung, AykolinoApps, Web-Entwicklung, Produktivitäts-Apps, MBUPS-Projekt">
     <meta name="author" content="Ayko Tiedtke">
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -59,76 +56,6 @@
             to { transform: rotate(360deg); }
         }
 
-        .app-card {
-            background-color: rgba(23, 23, 23, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease-in-out;
-            overflow: hidden;
-        }
-
-        .app-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(139, 92, 246, 0.5);
-        }
-        
-        .img-placeholder {
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            background: linear-gradient(45deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.05));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: rgba(255, 255, 255, 0.2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background-color 0.3s ease;
-        }
-        
-        .img-placeholder-portrait {
-            aspect-ratio: 10 / 16;
-        }
-        
-        .app-card:hover .img-placeholder {
-            background: linear-gradient(45deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.07));
-        }
-
-        .img-placeholder svg {
-            width: 48px;
-            height: 48px;
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
-        
-        .app-card:hover .img-placeholder svg {
-            opacity: 0.8;
-        }
-
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-hide {
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
-        }
-
-        .slider-button {
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        .slider-button.hidden {
-            opacity: 0;
-            pointer-events: none;
-            transform: scale(0.8);
-        }
-        
         .header {
             animation: fadeInDown 0.8s ease-out;
         }
@@ -148,27 +75,48 @@
                 transform: translateY(0);
             }
         }
+        
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Slider Styles */
+        .slider-container {
+            scrollbar-width: none; /* Firefox */
+        }
+        .slider-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, and Opera */
+        }
+        .slider-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .slider-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
     </style>
 </head>
 <body class="overflow-x-hidden">
 
-    <!-- Header -->
     <nav id="main-header" class="header fixed top-0 left-0 w-full z-50 backdrop-blur-md border-b border-transparent transition-colors duration-300">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Logo / Brand Name -->
                 <a href="#" class="text-2xl font-bold tracking-tight text-white">
                     Aykolino<span class="gradient-text">Apps</span>
                 </a>
 
-                <!-- Desktop Navigation -->
-                <!-- PLATZHALTER FÜR LINKS: Ersetze das # in href="" mit deinen Links (z.B. "ueber-mich.html" oder "mailto:deine@email.de") -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="uebermich.aykolino.de" class="text-gray-300 hover:text-white transition-colors">Über mich</a>
                     <a href="mailto:ayko.tiedtke2@yahoo.de" class="text-gray-300 hover:text-white transition-colors">Kontakt</a>
                 </div>
                 
-                <!-- Mobile Menu Button -->
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-white">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -176,24 +124,19 @@
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <!-- PLATZHALTER FÜR LINKS (MOBIL): Ersetze das # in href="" mit deinen Links -->
         <div id="mobile-menu" class="hidden md:hidden">
             <a href="uebermich.aykolino.de" class="block py-3 px-4 text-sm text-gray-200 hover:bg-gray-800">Über mich</a>
             <a href="mailto:ayko.tiedtke2@yahoo.de" class="block py-3 px-4 text-sm text-gray-200 hover:bg-gray-800">Kontakt</a>
         </div>
     </nav>
 
-    <!-- Background Glow -->
     <div class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden">
         <div class="glow-effect"></div>
     </div>
 
-    <!-- Main Container -->
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
-        <!-- Hero Section -->
-        <header class="min-h-screen flex flex-col justify-center items-center text-center pt-20 pb-20">
+        <header class="flex flex-col justify-center items-center text-center pt-32 pb-24">
             <div class="max-w-4xl">
                 <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight fade-in-up">
                     Ihre Vision, unser Code: <span class="gradient-text">Intelligente Web-Lösungen</span>
@@ -210,143 +153,80 @@
             </div>
         </header>
 
-      <style>
-    /* Versteckt die Scrollbar im Slider-Container */
-    .slider-container {
-        scrollbar-width: none; /* Für Firefox */
-    }
-    .slider-container::-webkit-scrollbar {
-        display: none; /* Für Chrome, Safari, and Opera */
-    }
-    /* Hover-Effekt für die Karten */
-    .slider-card {
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    }
-    .slider-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-</style>
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl fade-in-up">
+                Ein kleiner Tool Überblick:
+            </h2>
+        </div>
 
-<div id="slider-component-wrapper" class="relative max-w-7xl mx-auto">
-    <div class="absolute inset-y-0 left-0 z-10 flex items-center -ml-4 md:-ml-8">
-        <button id="scroll-left" class="bg-gray-800/50 hover:bg-gray-700/80 transition-all text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg backdrop-blur-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-        </button>
-    </div>
-    <div class="absolute inset-y-0 right-0 z-10 flex items-center -mr-4 md:-mr-8">
-         <button id="scroll-right" class="bg-gray-800/50 hover:bg-gray-700/80 transition-all text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg backdrop-blur-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-        </button>
-    </div>
-
-    <div id="slider-container" class="slider-container flex overflow-x-auto snap-x snap-mandatory scroll-smooth py-8 -mx-4 px-4 gap-8">
-        
-        <a href="https://utm-generator.aykolino.de" class="snap-center block flex-shrink-0 w-full sm:w-1/2 lg:w-1/3">
-            <div class="slider-card bg-gray-900/50 border border-gray-700/50 rounded-2xl overflow-hidden h-full flex flex-col">
-                <div class="aspect-[3/4] bg-gradient-to-br from-blue-500/20 to-violet-500/20 flex items-center justify-center">
-                    <img src="Bild_2025-10-08_103949329.png" alt="UTM-Generator Vorschau" class="w-full h-full object-cover">
-                </div>
-                <div class="p-6 flex-grow flex flex-col">
-                    <h3 class="text-xl font-bold text-white mb-2">UTM-Generator</h3>
-                    <p class="text-gray-400 text-base mb-4 flex-grow">Erstellt schnell und fehlerfrei UTM-Parameter für präzises Kampagnen-Tracking.</p>
-                </div>
+        <div id="slider-component-wrapper" class="relative max-w-7xl mx-auto">
+            <div class="absolute inset-y-0 left-0 z-10 flex items-center -ml-4 md:-ml-8">
+                <button id="scroll-left" class="bg-gray-800/50 hover:bg-gray-700/80 transition-all text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg backdrop-blur-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                </button>
             </div>
-        </a>
-
-        <a href="https://html-translator.aykolino.de" class="snap-center block flex-shrink-0 w-full sm:w-1/2 lg:w-1/3">
-            <div class="slider-card bg-gray-900/50 border border-gray-700/50 rounded-2xl overflow-hidden h-full flex flex-col">
-                <div class="aspect-video bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center">
-                    <img src="Bild_2025-10-08_103517085.png" alt="Projekt HTML-Übersetzer Vorschau" class="w-full h-full object-cover">
-                </div>
-                <div class="p-6 flex-grow flex flex-col">
-                    <h3 class="text-xl font-bold text-white mb-2">HTML-Translator</h3>
-                    <p class="text-gray-400 text-base flex-grow">Übersetzt Texte innerhalb von HTML-Code, ohne die Struktur zu zerstören.</p>
-                  <p class="text-sm text-gray-500">Der HTML-Translator ist das perfekte Tool für alle, die Texte innerhalb von HTML-Code schnell, präzise und strukturerhaltend übersetzen möchten. 
-                      Egal ob Sie mehrsprachige Websites betreiben, Blogartikel lokalisieren oder E-Commerce-Inhalte anpassen – der HTML-Translator übersetzt Ihre Inhalte ohne die HTML-Struktur zu beschädigen.</p>
-                </div>
+            <div class="absolute inset-y-0 right-0 z-10 flex items-center -mr-4 md:-mr-8">
+                 <button id="scroll-right" class="bg-gray-800/50 hover:bg-gray-700/80 transition-all text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg backdrop-blur-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                </button>
             </div>
-        </a>
 
-        <a href="https://aykolino.de" class="snap-center block flex-shrink-0 w-full sm:w-1/2 lg:w-1/3">
-            <div class="slider-card bg-gray-900/50 border border-gray-700/50 rounded-2xl overflow-hidden h-full flex flex-col">
-               <div class="aspect-video bg-gradient-to-br from-teal-500/20 to-cyan-500/20 flex items-center justify-center">
-                    <img src="Gemini_Generated_Image_36l9ey36l9ey36l9 (2).png" alt="Projekt X Vorschau" class="w-full h-full object-cover">
-                </div>
-                <div class="p-6 flex-grow flex flex-col">
-                    <h3 class="text-xl font-bold text-white mb-2">Projekt X</h3>
-                    <p class="text-gray-400 text-base flex-grow">Derzeit ist ein neues Programm in Entwicklung. Bleide dran für weitere Updates! #ProjectX</p>
-                </div>
-            </div>
-        </a>
-        
-        <a href="https://aykolino.de" class="snap-center block flex-shrink-0 w-full sm:w-1/2 lg:w-1/3">
-            <div class="slider-card bg-gray-900/50 border border-gray-700/50 rounded-2xl overflow-hidden h-full flex flex-col">
-               <div class="aspect-video bg-gradient-to-br from-orange-500/20 to-amber-500/20 flex items-center justify-center">
-                    <img src="Gemini_Generated_Image_pbe85qpbe85qpbe8 (1) (1).png" alt="Weitere Ideen Vorschau" class="w-full h-full object-cover">
-                </div>
-                <div class="p-6 flex-grow flex flex-col">
-                    <h3 class="text-xl font-bold text-white mb-2">Coming soon..</h3>
-                    <p class="text-gray-400 text-base flex-grow">Coming soon...</p>
-                </div>
-            </div>
-        </a>
-
-    </div>
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const sliderWrapper = document.getElementById('slider-component-wrapper');
-        if (sliderWrapper && !sliderWrapper.dataset.initialized) {
-            const slider = sliderWrapper.querySelector('#slider-container');
-            const scrollLeftBtn = sliderWrapper.querySelector('#scroll-left');
-            const scrollRightBtn = sliderWrapper.querySelector('#scroll-right');
-
-            const updateButtons = () => {
-                if (!slider) return;
-                const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+            <div id="slider-container" class="slider-container flex overflow-x-auto snap-x snap-mandatory scroll-smooth py-8 -mx-4 px-4 gap-8">
                 
-                // Buttons ausblenden/anzeigen
-                scrollLeftBtn.style.display = slider.scrollLeft > 1 ? 'flex' : 'none';
-                scrollRightBtn.style.display = slider.scrollLeft < maxScrollLeft - 1 ? 'flex' : 'none';
-            };
+                <a href="https://utm-generator.aykolino.de" class="snap-center block flex-shrink-0 w-full sm:w-1/2 lg:w-1/3">
+                    <div class="slider-card bg-gray-900/50 border border-gray-700/50 rounded-2xl overflow-hidden h-full flex flex-col">
+                        <div class="aspect-[3/4] bg-gradient-to-br from-blue-500/20 to-violet-500/20 flex items-center justify-center">
+                            <img src="Bild_2025-10-08_103949329.png" alt="UTM-Generator Vorschau" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold text-white mb-2">UTM-Generator</h3>
+                            <p class="text-gray-400 text-base mb-4 flex-grow">Erstellt schnell und fehlerfrei UTM-Parameter für präzises Kampagnen-Tracking.</p>
+                        </div>
+                    </div>
+                </a>
 
-            const scrollSlider = (direction) => {
-                const card = slider.querySelector('a');
-                if (card) {
-                    const scrollAmount = card.offsetWidth + parseInt(getComputedStyle(slider).gap);
-                    slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-                }
-            };
-            
-            scrollLeftBtn.addEventListener('click', () => scrollSlider(-1));
-            scrollRightBtn.addEventListener('click', () => scrollSlider(1));
-            slider.addEventListener('scroll', updateButtons, { passive: true });
-            
-            setTimeout(updateButtons, 100); 
-            window.addEventListener('resize', updateButtons);
+                <a href="https://html-translator.aykolino.de" class="snap-center block flex-shrink-0 w-full sm:w-1/2 lg:w-1/3">
+                    <div class="slider-card bg-gray-900/50 border border-gray-700/50 rounded-2xl overflow-hidden h-full flex flex-col">
+                        <div class="aspect-video bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center">
+                            <img src="Bild_2025-10-08_103517085.png" alt="Projekt HTML-Übersetzer Vorschau" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold text-white mb-2">HTML-Translator</h3>
+                            <p class="text-gray-400 text-base flex-grow">Übersetzt Texte innerhalb von HTML-Code, ohne die Struktur zu zerstören.</p>
+                          <p class="text-sm text-gray-500">Der HTML-Translator ist das perfekte Tool für alle, die Texte innerhalb von HTML-Code schnell, präzise und strukturerhaltend übersetzen möchten. 
+                              Egal ob Sie mehrsprachige Websites betreiben, Blogartikel lokalisieren oder E-Commerce-Inhalte anpassen – der HTML-Translator übersetzt Ihre Inhalte ohne die HTML-Struktur zu beschädigen.</p>
+                        </div>
+                    </div>
+                </a>
 
-            sliderWrapper.dataset.initialized = 'true';
-        }
-    });
-</script>
-                    </a>
-                </div>
+                <a href="https://aykolino.de" class="snap-center block flex-shrink-0 w-full sm:w-1/2 lg:w-1/3">
+                    <div class="slider-card bg-gray-900/50 border border-gray-700/50 rounded-2xl overflow-hidden h-full flex flex-col">
+                       <div class="aspect-video bg-gradient-to-br from-teal-500/20 to-cyan-500/20 flex items-center justify-center">
+                            <img src="Gemini_Generated_Image_36l9ey36l9ey36l9 (2).png" alt="Projekt X Vorschau" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold text-white mb-2">Projekt X</h3>
+                            <p class="text-gray-400 text-base flex-grow">Derzeit ist ein neues Programm in Entwicklung. Bleide dran für weitere Updates! #ProjectX</p>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="https://aykolino.de" class="snap-center block flex-shrink-0 w-full sm:w-1/2 lg:w-1/3">
+                    <div class="slider-card bg-gray-900/50 border border-gray-700/50 rounded-2xl overflow-hidden h-full flex flex-col">
+                       <div class="aspect-video bg-gradient-to-br from-orange-500/20 to-amber-500/20 flex items-center justify-center">
+                            <img src="Gemini_Generated_Image_pbe85qpbe85qpbe8 (1) (1).png" alt="Weitere Ideen Vorschau" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold text-white mb-2">Coming soon..</h3>
+                            <p class="text-gray-400 text-base flex-grow">Coming soon...</p>
+                        </div>
+                    </div>
+                </a>
 
-                <!-- Navigation Buttons -->
-                <button id="prev-button" class="slider-button absolute top-1/2 -left-4 transform -translate-y-1/2 z-10 bg-gray-800/50 backdrop-blur-sm border border-gray-700 w-12 h-12 rounded-full flex items-center justify-center text-white hover:bg-gray-700/70 hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
-                </button>
-                <button id="next-button" class="slider-button absolute top-1/2 -right-4 transform -translate-y-1/2 z-10 bg-gray-800/50 backdrop-blur-sm border border-gray-700 w-12 h-12 rounded-full flex items-center justify-center text-white hover:bg-gray-700/70">
-                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
-                </button>
             </div>
-            
-        </section>
+        </div>
 
-        <!-- Footer -->
-        <footer class="text-center py-10 border-t border-gray-800">
+        <footer class="text-center py-10 mt-20 border-t border-gray-800">
             <p class="text-gray-500">
                 &copy; <span id="year"></span> AykolinoApps. Mit Leidenschaft.
             </p>
@@ -370,33 +250,38 @@
         elementsToAnimate.forEach(el => observer.observe(el));
 
         // Slider Logic
-        document.addEventListener('DOMContentLoaded', function() {
-            const container = document.getElementById('apps-container');
-            const prevBtn = document.getElementById('prev-button');
-            const nextBtn = document.getElementById('next-button');
-            const scrollAmount = 320 + 32; // Card width (w-80) + space-x-8
+        document.addEventListener('DOMContentLoaded', () => {
+            const sliderWrapper = document.getElementById('slider-component-wrapper');
+            if (sliderWrapper && !sliderWrapper.dataset.initialized) {
+                const slider = sliderWrapper.querySelector('#slider-container');
+                const scrollLeftBtn = sliderWrapper.querySelector('#scroll-left');
+                const scrollRightBtn = sliderWrapper.querySelector('#scroll-right');
 
-            function updateButtonState() {
-                if (!container) return;
-                const scrollLeft = container.scrollLeft;
-                const scrollWidth = container.scrollWidth;
-                const clientWidth = container.clientWidth;
+                const updateButtons = () => {
+                    if (!slider) return;
+                    const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+                    
+                    scrollLeftBtn.style.display = slider.scrollLeft > 1 ? 'flex' : 'none';
+                    scrollRightBtn.style.display = slider.scrollLeft < maxScrollLeft - 1 ? 'flex' : 'none';
+                };
 
-                prevBtn.classList.toggle('hidden', scrollLeft <= 0);
-                nextBtn.classList.toggle('hidden', scrollLeft + clientWidth >= scrollWidth - 1);
+                const scrollSlider = (direction) => {
+                    const card = slider.querySelector('a');
+                    if (card) {
+                        const scrollAmount = card.offsetWidth + parseInt(getComputedStyle(slider).gap);
+                        slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+                    }
+                };
+                
+                scrollLeftBtn.addEventListener('click', () => scrollSlider(-1));
+                scrollRightBtn.addEventListener('click', () => scrollSlider(1));
+                slider.addEventListener('scroll', updateButtons, { passive: true });
+                
+                setTimeout(updateButtons, 100); 
+                window.addEventListener('resize', updateButtons);
+
+                sliderWrapper.dataset.initialized = 'true';
             }
-
-            prevBtn.addEventListener('click', () => {
-                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-            });
-
-            nextBtn.addEventListener('click', () => {
-                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            });
-
-            container.addEventListener('scroll', updateButtonState);
-            window.addEventListener('resize', updateButtonState);
-            updateButtonState(); // Initial check
         });
         
         // Header & Mobile Menu Logic
@@ -415,28 +300,6 @@
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
