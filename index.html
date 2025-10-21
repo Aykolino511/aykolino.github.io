@@ -7,7 +7,7 @@
     <title>©AykolinoApps | Innovative Web-Tools & Prozessoptimierung</title>
     <meta name="description" content="Entdecken Sie maßgeschneiderte Web-Anwendungen von AykolinoApps, die Ihren digitalen Workflow revolutionieren. Sparen Sie Zeit und steigern Sie die Effizienz mit smarten Tools wie dem MBUPS-Projekt.">
     <meta name="keywords" content="Web-Tools, Prozessoptimierung, Workflow-Automatisierung, AykolinoApps, Web-Entwicklung, Produktivitäts-Apps, MBUPS-Projekt">
-    <meta name="Ayko Tiedtke" content="AykolinoApps">
+    <meta name="author" content="Ayko Tiedtke">
 
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -21,6 +21,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #0a0a0a;
             color: #f5f5f5;
+            overflow-x: hidden;
         }
 
         .gradient-text {
@@ -101,9 +102,8 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
         
-        /* Language Switcher Styles */
+        /* --- NEUE & VERBESSERTE Sprachauswahl Stile --- */
         .lang-switcher-dropdown {
-            display: none; /* Controlled by JavaScript now */
             position: absolute;
             top: 100%;
             right: 0;
@@ -111,11 +111,22 @@
             background-color: #111827; /* bg-gray-900 */
             border-radius: 0.5rem; /* rounded-lg */
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            width: 140px;
-            z-index: 60; /* Ensure it's above other content */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+            width: 160px; /* Etwas breiter für die Flaggen */
+            z-index: 60;
+            overflow: hidden;
+            /* Animations-Eigenschaften */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s;
         }
-        /* REMOVED .lang-switcher:hover .lang-switcher-dropdown rule */
+
+        .lang-switcher-dropdown.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -130,20 +141,34 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="https://uebermich.aykolino.de" class="text-gray-300 hover:text-white transition-colors" data-translate-key="navAbout">Über mich</a>
                     <a href="mailto:ayko.tiedtke2@yahoo.de" class="text-gray-300 hover:text-white transition-colors" data-translate-key="navContact">Kontakt</a>
+                    
+                    <!-- Sprachauswahl -->
                     <div class="relative lang-switcher">
                         <button id="lang-switcher-button" class="flex items-center text-gray-300 hover:text-white transition-colors">
                             <img id="current-flag-desktop" src="" alt="Language flag" class="w-5 h-auto mr-2 rounded-sm object-cover">
                             <span id="current-lang-desktop">DE</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                         </button>
-                        <div id="lang-switcher-dropdown" class="lang-switcher-dropdown">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700" onclick="setLanguage('de')">Deutsch</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700" onclick="setLanguage('en')">English</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700" onclick="setLanguage('fr')">Français</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700" onclick="setLanguage('es')">Español</a>
+                        <div id="lang-switcher-dropdown" class="lang-switcher-dropdown p-2 space-y-1">
+                            <a href="#" class="flex items-center w-full px-3 py-2 text-sm text-gray-200 hover:bg-gray-700 rounded-md transition-colors" onclick="setLanguage('de', event)">
+                                <img src="https://flagcdn.com/w40/de.png" alt="German flag" class="w-5 h-auto mr-3 rounded-sm">
+                                <span>Deutsch</span>
+                            </a>
+                            <a href="#" class="flex items-center w-full px-3 py-2 text-sm text-gray-200 hover:bg-gray-700 rounded-md transition-colors" onclick="setLanguage('en', event)">
+                                <img src="https://flagcdn.com/w40/gb.png" alt="British flag" class="w-5 h-auto mr-3 rounded-sm">
+                                <span>English</span>
+                            </a>
+                            <a href="#" class="flex items-center w-full px-3 py-2 text-sm text-gray-200 hover:bg-gray-700 rounded-md transition-colors" onclick="setLanguage('fr', event)">
+                                <img src="https://flagcdn.com/w40/fr.png" alt="French flag" class="w-5 h-auto mr-3 rounded-sm">
+                                <span>Français</span>
+                            </a>
+                            <a href="#" class="flex items-center w-full px-3 py-2 text-sm text-gray-200 hover:bg-gray-700 rounded-md transition-colors" onclick="setLanguage('es', event)">
+                                 <img src="https://flagcdn.com/w40/es.png" alt="Spanish flag" class="w-5 h-auto mr-3 rounded-sm">
+                                <span>Español</span>
+                            </a>
                         </div>
                     </div>
-                    </div>
+                </div>
                 
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-white">
@@ -153,14 +178,22 @@
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden">
-            <a href="https://uebermich.aykolino.de" class="block py-3 px-4 text-sm text-gray-200 hover:bg-gray-800" data-translate-key="navAboutMobile">Über mich</a>
-            <a href="mailto:ayko.tiedtke2@yahoo.de" class="block py-3 px-4 text-sm text-gray-200 hover:bg-gray-800" data-translate-key="navContactMobile">Kontakt</a>
+            <a href="https://uebermich.aykolino.de" class="block py-3 px-4 text-sm text-gray-200 hover:bg-gray-800" data-translate-key="navAbout">Über mich</a>
+            <a href="mailto:ayko.tiedtke2@yahoo.de" class="block py-3 px-4 text-sm text-gray-200 hover:bg-gray-800" data-translate-key="navContact">Kontakt</a>
             <div class="px-4 pt-3 pb-1 border-t border-gray-700">
-                <p class="text-xs text-gray-400" data-translate-key="languageLabelMobile">Sprache:</p>
-                <a href="#" class="block py-2 text-sm text-gray-200 hover:bg-gray-800" onclick="setLanguage('de')">Deutsch</a>
-                <a href="#" class="block py-2 text-sm text-gray-200 hover:bg-gray-800" onclick="setLanguage('en')">English</a>
-                <a href="#" class="block py-2 text-sm text-gray-200 hover:bg-gray-800" onclick="setLanguage('fr')">Français</a>
-                <a href="#" class="block py-2 text-sm text-gray-200 hover:bg-gray-800" onclick="setLanguage('es')">Español</a>
+                <p class="text-xs text-gray-400 mb-2" data-translate-key="languageLabelMobile">Sprache:</p>
+                <a href="#" class="flex items-center w-full py-2 text-sm text-gray-200 hover:bg-gray-800" onclick="setLanguage('de', event)">
+                     <img src="https://flagcdn.com/w40/de.png" alt="German flag" class="w-5 h-auto mr-3 rounded-sm"> Deutsch
+                </a>
+                <a href="#" class="flex items-center w-full py-2 text-sm text-gray-200 hover:bg-gray-800" onclick="setLanguage('en', event)">
+                     <img src="https://flagcdn.com/w40/gb.png" alt="British flag" class="w-5 h-auto mr-3 rounded-sm"> English
+                </a>
+                <a href="#" class="flex items-center w-full py-2 text-sm text-gray-200 hover:bg-gray-800" onclick="setLanguage('fr', event)">
+                     <img src="https://flagcdn.com/w40/fr.png" alt="French flag" class="w-5 h-auto mr-3 rounded-sm"> Français
+                </a>
+                <a href="#" class="flex items-center w-full py-2 text-sm text-gray-200 hover:bg-gray-800" onclick="setLanguage('es', event)">
+                     <img src="https://flagcdn.com/w40/es.png" alt="Spanish flag" class="w-5 h-auto mr-3 rounded-sm"> Español
+                </a>
             </div>
         </div>
     </nav>
@@ -272,17 +305,13 @@
     </div>
 
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-        
-        // --- LANGUAGE SWITCHER LOGIC ---
+        // --- Translations-Objekt ---
         const translations = {
             'de': {
                 langName: 'DE',
-                flagUrl: 'https://flagcdn.com/w20/de.png',
+                flagUrl: 'https://flagcdn.com/w40/de.png',
                 navAbout: 'Über mich',
                 navContact: 'Kontakt',
-                navAboutMobile: 'Über mich',
-                navContactMobile: 'Kontakt',
                 languageLabelMobile: 'Sprache:',
                 heroTitle: 'Ihre Vision, unser Code: <span class="gradient-text">Intelligente Web-Lösungen</span>',
                 heroSubtitle: 'Smarte KI, kluges Prompt Engineering – Ihre Workflows neu gedacht. Automatisieren, beschleunigen, begeistern.',
@@ -299,16 +328,14 @@
                 seoLongDesc: 'Der SEO-Generator ist das perfekte Tool für alle, die unkompliziert & schnell, einen perfekten SEO-optimierten Text erstellen möchten. Die hinterlegte Google-API ist perfekt dafür!',
                 comingSoonTitle: 'Kommt bald..',
                 comingSoonDesc: 'Kommt bald...',
-                footerText: '© <span id="year-footer-1"></span> AykolinoApps. Mit Leidenschaft.',
+                footerText: '© <span id="year-footer"></span> AykolinoApps. Mit Leidenschaft.',
                 footerDisclaimer: 'Diese Domain wird nicht für gewerbliche Zwecke genutzt.'
             },
             'en': {
                 langName: 'EN',
-                flagUrl: 'https://flagcdn.com/w20/gb.png',
+                flagUrl: 'https://flagcdn.com/w40/gb.png',
                 navAbout: 'About Me',
                 navContact: 'Contact',
-                navAboutMobile: 'About Me',
-                navContactMobile: 'Contact',
                 languageLabelMobile: 'Language:',
                 heroTitle: 'Your Vision, Our Code: <span class="gradient-text">Intelligent Web Solutions</span>',
                 heroSubtitle: 'Smart AI, clever prompt engineering – your workflows reimagined. Automate, accelerate, inspire.',
@@ -325,16 +352,14 @@
                 seoLongDesc: 'The SEO Generator is the perfect tool for anyone who wants to create a perfect SEO-optimized text quickly and easily. The integrated Google API is perfect for this!',
                 comingSoonTitle: 'Coming soon..',
                 comingSoonDesc: 'Coming soon...',
-                footerText: '© <span id="year-footer-2"></span> AykolinoApps. With passion.',
+                footerText: '© <span id="year-footer"></span> AykolinoApps. With passion.',
                 footerDisclaimer: 'This domain is not used for commercial purposes.'
             },
             'fr': {
                 langName: 'FR',
-                flagUrl: 'https://flagcdn.com/w20/fr.png',
+                flagUrl: 'https://flagcdn.com/w40/fr.png',
                 navAbout: 'À propos de moi',
                 navContact: 'Contact',
-                navAboutMobile: 'À propos de moi',
-                navContactMobile: 'Contact',
                 languageLabelMobile: 'Langue:',
                 heroTitle: 'Votre Vision, Notre Code: <span class="gradient-text">Solutions Web Intelligentes</span>',
                 heroSubtitle: 'IA intelligente, prompt engineering astucieux – vos flux de travail réinventés. Automatiser, accélérer, inspirer.',
@@ -351,16 +376,14 @@
                 seoLongDesc: "Le Générateur SEO est l'outil parfait pour tous ceux qui veulent créer un texte perfectly optimisé pour le SEO de manière simple et rapide. L'API Google intégrée est parfaite pour cela !",
                 comingSoonTitle: 'Bientôt disponible..',
                 comingSoonDesc: 'Bientôt disponible...',
-                footerText: '© <span id="year-footer-3"></span> AykolinoApps. Avec passion.',
+                footerText: '© <span id="year-footer"></span> AykolinoApps. Avec passion.',
                 footerDisclaimer: "Ce domaine n'est pas utilisé à des fins commerciales."
             },
             'es': {
                 langName: 'ES',
-                flagUrl: 'https://flagcdn.com/w20/es.png',
+                flagUrl: 'https://flagcdn.com/w40/es.png',
                 navAbout: 'Sobre mí',
                 navContact: 'Contacto',
-                navAboutMobile: 'Sobre mí',
-                navContactMobile: 'Contacto',
                 languageLabelMobile: 'Idioma:',
                 heroTitle: 'Tu Visión, Nuestro Código: <span class="gradient-text">Soluciones Web Inteligentes</span>',
                 heroSubtitle: 'IA inteligente, prompt engineering astuto – tus flujos de trabajo reinventados. Automatizar, acelerar, inspirar.',
@@ -377,90 +400,90 @@
                 seoLongDesc: 'El Generador SEO es la herramienta perfecta para cualquiera que quiera crear un texto perfectamente optimizado para SEO de forma rápida y sencilla. ¡La API de Google integrada es perfecta para ello!',
                 comingSoonTitle: 'Próximamente..',
                 comingSoonDesc: 'Próximamente...',
-                footerText: '© <span id="year-footer-4"></span> AykolinoApps. Con pasión.',
+                footerText: '© <span id="year-footer"></span> AykolinoApps. Con pasión.',
                 footerDisclaimer: 'Este dominio no se utiliza con fines comerciales.'
             }
         };
 
-        function setLanguage(lang) {
-            if (!translations[lang]) return;
-
-            document.documentElement.lang = lang;
-            localStorage.setItem('language', lang);
-
-            document.querySelectorAll('[data-translate-key]').forEach(el => {
-                const key = el.getAttribute('data-translate-key');
-                if (translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
-                }
-            });
-            
-            // Update year in footer after translation
-            const yearSpans = document.querySelectorAll('[id^="year-footer-"]');
-            yearSpans.forEach(span => {
-                if(span) span.textContent = new Date().getFullYear();
-            });
-
-            // Update language switcher display
-            const currentLangDesktop = document.getElementById('current-lang-desktop');
-            if (currentLangDesktop) {
-                currentLangDesktop.textContent = translations[lang].langName;
-            }
-            
-            const currentFlagDesktop = document.getElementById('current-flag-desktop');
-            if(currentFlagDesktop) {
-                currentFlagDesktop.src = translations[lang].flagUrl;
-                currentFlagDesktop.alt = `Flag of ${translations[lang].langName}`;
-            }
-        }
-
+        // --- Haupt-Logik ---
         document.addEventListener('DOMContentLoaded', () => {
+
+            const langSwitcherButton = document.getElementById('lang-switcher-button');
+            const langSwitcherDropdown = document.getElementById('lang-switcher-dropdown');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const header = document.getElementById('main-header');
+            
+            window.setLanguage = function(lang, event) {
+                if (event) event.preventDefault();
+                if (!translations[lang]) return;
+
+                localStorage.setItem('language', lang);
+                document.documentElement.lang = lang;
+
+                document.querySelectorAll('[data-translate-key]').forEach(el => {
+                    const key = el.getAttribute('data-translate-key');
+                    if (translations[lang][key]) {
+                        el.innerHTML = translations[lang][key];
+                    }
+                });
+
+                const yearSpan = document.getElementById('year') || document.getElementById('year-footer');
+                if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+                const currentLangDesktop = document.getElementById('current-lang-desktop');
+                const currentFlagDesktop = document.getElementById('current-flag-desktop');
+                if (currentLangDesktop) currentLangDesktop.textContent = translations[lang].langName;
+                if (currentFlagDesktop) {
+                    currentFlagDesktop.src = translations[lang].flagUrl;
+                    currentFlagDesktop.alt = `Flag of ${lang}`;
+                }
+
+                if(langSwitcherDropdown) langSwitcherDropdown.classList.remove('open');
+                if(mobileMenu) mobileMenu.classList.add('hidden');
+            }
+
             const savedLang = localStorage.getItem('language') || 'de';
-            setLanguage(savedLang);
-        });
-        
-        // --- END LANGUAGE LOGIC ---
+            window.setLanguage(savedLang);
 
-        // --- START: NEW DROPDOWN CLICK-TOGGLE LOGIC ---
-        const langSwitcherButton = document.getElementById('lang-switcher-button');
-        const langSwitcherDropdown = document.getElementById('lang-switcher-dropdown');
+            if (langSwitcherButton) {
+                langSwitcherButton.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    langSwitcherDropdown.classList.toggle('open');
+                });
+            }
 
-        if(langSwitcherButton && langSwitcherDropdown) {
-            langSwitcherButton.addEventListener('click', function(event) {
-                event.stopPropagation(); // Prevents the window event from closing it immediately
-                const isHidden = langSwitcherDropdown.style.display === 'none' || langSwitcherDropdown.style.display === '';
-                langSwitcherDropdown.style.display = isHidden ? 'block' : 'none';
+            window.addEventListener('click', () => {
+                if (langSwitcherDropdown && langSwitcherDropdown.classList.contains('open')) {
+                    langSwitcherDropdown.classList.remove('open');
+                }
             });
+            
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
 
-            // Hide dropdown when clicking anywhere else on the page
-            window.addEventListener('click', function(event) {
-                if (langSwitcherDropdown.style.display === 'block') {
-                    langSwitcherDropdown.style.display = 'none';
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
                 }
             });
 
-            // When a language is selected, also close the dropdown
-            langSwitcherDropdown.addEventListener('click', function(event) {
-                langSwitcherDropdown.style.display = 'none';
-            });
-        }
-        // --- END: NEW DROPDOWN LOGIC ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
 
-        // Scroll-in Animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-        const elementsToAnimate = document.querySelectorAll('.fade-in-up');
-        elementsToAnimate.forEach(el => observer.observe(el));
-
-        // Slider Logic (wrapped in its own DOMContentLoaded to avoid issues)
-        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+            
+            // Slider Logic
             const sliderWrapper = document.getElementById('slider-component-wrapper');
             if (sliderWrapper && !sliderWrapper.dataset.initialized) {
                 const slider = sliderWrapper.querySelector('#slider-container');
@@ -495,24 +518,6 @@
                 }
             }
         });
-        
-        // Header & Mobile Menu Logic
-        const header = document.getElementById('main-header');
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 10) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
-            }
-        });
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
     </script>
 </body>
 </html>
-
