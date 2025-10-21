@@ -132,9 +132,7 @@
                     <a href="mailto:ayko.tiedtke2@yahoo.de" class="text-gray-300 hover:text-white transition-colors" data-translate-key="navContact">Kontakt</a>
                     <div class="relative lang-switcher">
                         <button id="lang-switcher-button" class="flex items-center text-gray-300 hover:text-white transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.002 6.002 0 0111.336 0H4.332zM15.668 11.973a6.002 6.002 0 01-11.336 0h11.336z" clip-rule="evenodd" />
-                            </svg>
+                            <img id="current-flag-desktop" src="" alt="Language flag" class="w-5 h-auto mr-2 rounded-sm object-cover">
                             <span id="current-lang-desktop">DE</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
                         </button>
@@ -267,6 +265,9 @@
             <p class="text-gray-500" data-translate-key="footerText">
                 &copy; <span id="year"></span> AykolinoApps. Mit Leidenschaft.
             </p>
+            <p class="text-xs text-gray-600 mt-2" data-translate-key="footerDisclaimer">
+                Diese Domain wird nicht für gewerbliche zwecke genutzt.
+            </p>
         </footer>
     </div>
 
@@ -277,6 +278,7 @@
         const translations = {
             'de': {
                 langName: 'DE',
+                flagUrl: 'https://flagcdn.com/w20/de.png',
                 navAbout: 'Über mich',
                 navContact: 'Kontakt',
                 navAboutMobile: 'Über mich',
@@ -297,10 +299,12 @@
                 seoLongDesc: 'Der SEO-Generator ist das perfekte Tool für alle, die unkompliziert & schnell, einen perfekten SEO-optimierten Text erstellen möchten. Die hinterlegte Google-API ist perfekt dafür!',
                 comingSoonTitle: 'Kommt bald..',
                 comingSoonDesc: 'Kommt bald...',
-                footerText: '© <span id="year-footer-1"></span> AykolinoApps. Mit Leidenschaft.'
+                footerText: '© <span id="year-footer-1"></span> AykolinoApps. Mit Leidenschaft.',
+                footerDisclaimer: 'Diese Domain wird nicht für gewerbliche Zwecke genutzt.'
             },
             'en': {
                 langName: 'EN',
+                flagUrl: 'https://flagcdn.com/w20/gb.png',
                 navAbout: 'About Me',
                 navContact: 'Contact',
                 navAboutMobile: 'About Me',
@@ -321,10 +325,12 @@
                 seoLongDesc: 'The SEO Generator is the perfect tool for anyone who wants to create a perfect SEO-optimized text quickly and easily. The integrated Google API is perfect for this!',
                 comingSoonTitle: 'Coming soon..',
                 comingSoonDesc: 'Coming soon...',
-                footerText: '© <span id="year-footer-2"></span> AykolinoApps. With passion.'
+                footerText: '© <span id="year-footer-2"></span> AykolinoApps. With passion.',
+                footerDisclaimer: 'This domain is not used for commercial purposes.'
             },
             'fr': {
                 langName: 'FR',
+                flagUrl: 'https://flagcdn.com/w20/fr.png',
                 navAbout: 'À propos de moi',
                 navContact: 'Contact',
                 navAboutMobile: 'À propos de moi',
@@ -345,10 +351,12 @@
                 seoLongDesc: "Le Générateur SEO est l'outil parfait pour tous ceux qui veulent créer un texte perfectly optimisé pour le SEO de manière simple et rapide. L'API Google intégrée est parfaite pour cela !",
                 comingSoonTitle: 'Bientôt disponible..',
                 comingSoonDesc: 'Bientôt disponible...',
-                footerText: '© <span id="year-footer-3"></span> AykolinoApps. Avec passion.'
+                footerText: '© <span id="year-footer-3"></span> AykolinoApps. Avec passion.',
+                footerDisclaimer: "Ce domaine n'est pas utilisé à des fins commerciales."
             },
             'es': {
                 langName: 'ES',
+                flagUrl: 'https://flagcdn.com/w20/es.png',
                 navAbout: 'Sobre mí',
                 navContact: 'Contacto',
                 navAboutMobile: 'Sobre mí',
@@ -369,7 +377,8 @@
                 seoLongDesc: 'El Generador SEO es la herramienta perfecta para cualquiera que quiera crear un texto perfectamente optimizado para SEO de forma rápida y sencilla. ¡La API de Google integrada es perfecta para ello!',
                 comingSoonTitle: 'Próximamente..',
                 comingSoonDesc: 'Próximamente...',
-                footerText: '© <span id="year-footer-4"></span> AykolinoApps. Con pasión.'
+                footerText: '© <span id="year-footer-4"></span> AykolinoApps. Con pasión.',
+                footerDisclaimer: 'Este dominio no se utiliza con fines comerciales.'
             }
         };
 
@@ -396,6 +405,12 @@
             const currentLangDesktop = document.getElementById('current-lang-desktop');
             if (currentLangDesktop) {
                 currentLangDesktop.textContent = translations[lang].langName;
+            }
+            
+            const currentFlagDesktop = document.getElementById('current-flag-desktop');
+            if(currentFlagDesktop) {
+                currentFlagDesktop.src = translations[lang].flagUrl;
+                currentFlagDesktop.alt = `Flag of ${translations[lang].langName}`;
             }
         }
 
@@ -500,3 +515,4 @@
     </script>
 </body>
 </html>
+
