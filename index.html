@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>©AykolinoApps | Innovative Web-Tools & Prozessoptimierung</title>
-    <meta name="description" content="Entdecken Sie maßgeschneiderte Web-Anwendungen von AykolinoApps, die Ihren digitalen Workflow revolutionieren. Sparen Sie Zeit und steigern Sie die Effizienz mit smarten Tools wie dem MBUPS-Projekt.">
-    <meta name="keywords" content="Web-Tools, Prozessoptimierung, Workflow-Automatisierung, AykolinoApps, Web-Entwicklung, Produktivitäts-Apps, MBUPS-Projekt">
+    <title>AykolinoApps | Innovative Web-Tools & Prozessoptimierung</title>
+    <meta name="description" content="Entdecken Sie maßgeschneiderte Web-Anwendungen von AykolinoApps, die Ihren digitalen Workflow revolutionieren. Sparen Sie Zeit und steigern Sie die Effizienz mit smarten Tools.">
+    <meta name="keywords" content="Web-Tools, Prozessoptimierung, Workflow-Automatisierung, AykolinoApps, Web-Entwicklung, Produktivitäts-Apps">
     <meta name="author" content="Ayko Tiedtke">
+
+    <meta property="og:title" content="AykolinoApps | Innovative Web-Tools">
+    <meta property="og:description" content="Maßgeschneiderte Web-Anwendungen, die deinen digitalen Workflow revolutionieren.">
+    <meta property="og:image" content="https://aykolino.de/dein-vorschaubild.jpg"> <meta property="og:url" content="https://aykolino.de">
+    <meta property="og:type" content="website">
 
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -16,12 +21,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon-32x32.png" type="image/png">
 
-    <!-- === GOATCOUNTER SKRIPT (MIT DEINEM LINK) === -->
-    <script data-goatcounter="https://aykolino.goatcounter.com/count" 
-            async 
-            src="//gc.zgo.at/count.js"></script>
-    <!-- === ENDE GOATCOUNTER === -->
-
+    <script data-goatcounter="https://aykolino.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -37,25 +38,15 @@
             background-clip: text;
         }
         
-        .cta-button {
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
-        }
-
         .glow-effect {
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0) 60%);
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(99, 102, 241, 0) 60%);
             animation: rotateGlow 20s linear infinite;
+            will-change: transform; /* Performance Boost für die GPU */
         }
 
         @keyframes rotateGlow {
@@ -68,19 +59,13 @@
         }
         
         .header-scrolled {
-            background-color: rgba(10, 10, 10, 0.7);
-            border-bottom-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(10, 10, 10, 0.85);
+            border-bottom-color: rgba(255, 255, 255, 0.05);
         }
 
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .fade-in-up {
@@ -88,40 +73,32 @@
             transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
+        
         .fade-in-up.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Slider Styles */
-        .slider-container {
-            scrollbar-width: none; /* Firefox */
-        }
-        .slider-container::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, and Opera */
-        }
-        .slider-card {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-        .slider-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        /* Tool Card Hover Effects - Deaktiviert auf Touch-Geräten um "Hängenbleiben" zu vermeiden */
+        @media (hover: hover) {
+            .tool-card-wrapper:not(.disabled-card):hover .tool-icon-bg {
+                background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            }
         }
         
-        /* --- NEUE & VERBESSERTE Sprachauswahl Stile --- */
+        /* Sprachauswahl Stile */
         .lang-switcher-dropdown {
             position: absolute;
             top: 100%;
             right: 0;
             margin-top: 10px;
-            background-color: #111827; /* bg-gray-900 */
-            border-radius: 0.5rem; /* rounded-lg */
+            background-color: #111827;
+            border-radius: 0.5rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
-            width: 160px; /* Etwas breiter für die Flaggen */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            width: 160px;
             z-index: 60;
             overflow: hidden;
-            /* Animations-Eigenschaften */
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
@@ -145,61 +122,60 @@
                 </a>
 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="https://uebermich.aykolino.de" class="text-gray-300 hover:text-white transition-colors" data-translate-key="navAbout" data-goatcounter-click="nav-desktop-ueber-mich">Über mich</a>
-                    <a href="mailto:ayko.tiedtke2@yahoo.de" class="text-gray-300 hover:text-white transition-colors" data-translate-key="navContact" data-goatcounter-click="nav-desktop-kontakt">Kontakt</a>
+                    <a href="https://uebermich.aykolino.de" class="text-gray-300 hover:text-white transition-colors" data-translate-key="navAbout">Über mich</a>
+                    <a href="mailto:ayko.tiedtke2@yahoo.de" class="text-gray-300 hover:text-white transition-colors" data-translate-key="navContact">Kontakt</a>
                     
-                    <!-- Sprachauswahl -->
                     <div class="relative lang-switcher">
-                        <button id="lang-switcher-button" class="flex items-center text-gray-300 hover:text-white transition-colors">
+                        <button id="lang-switcher-button" class="flex items-center text-gray-300 hover:text-white transition-colors p-2" aria-haspopup="true" aria-expanded="false" aria-label="Sprache wählen">
                             <img id="current-flag-desktop" src="" alt="Language flag" class="w-5 h-auto mr-2 rounded-sm object-cover">
                             <span id="current-lang-desktop">DE</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                         </button>
                         <div id="lang-switcher-dropdown" class="lang-switcher-dropdown p-2 space-y-1">
-                            <a href="#" class="flex items-center w-full px-3 py-2 text-sm text-gray-200 hover:bg-gray-700 rounded-md transition-colors" onclick="setLanguage('de', event)">
+                            <button class="flex items-center w-full px-3 py-2 text-sm text-gray-200 hover:bg-gray-700 rounded-md transition-colors" onclick="setLanguage('de', event)">
                                 <img src="https://flagcdn.com/w40/de.png" alt="German flag" class="w-5 h-auto mr-3 rounded-sm">
                                 <span>Deutsch</span>
-                            </a>
-                            <a href="#" class="flex items-center w-full px-3 py-2 text-sm text-gray-200 hover:bg-gray-700 rounded-md transition-colors" onclick="setLanguage('en', event)">
+                            </button>
+                            <button class="flex items-center w-full px-3 py-2 text-sm text-gray-200 hover:bg-gray-700 rounded-md transition-colors" onclick="setLanguage('en', event)">
                                 <img src="https://flagcdn.com/w40/gb.png" alt="British flag" class="w-5 h-auto mr-3 rounded-sm">
                                 <span>English</span>
-                            </a>
-                            <a href="#" class="flex items-center w-full px-3 py-2 text-sm text-gray-200 hover:bg-gray-700 rounded-md transition-colors" onclick="setLanguage('fr', event)">
+                            </button>
+                            <button class="flex items-center w-full px-3 py-2 text-sm text-gray-200 hover:bg-gray-700 rounded-md transition-colors" onclick="setLanguage('fr', event)">
                                 <img src="https://flagcdn.com/w40/fr.png" alt="French flag" class="w-5 h-auto mr-3 rounded-sm">
                                 <span>Français</span>
-                            </a>
-                            <a href="#" class="flex items-center w-full px-3 py-2 text-sm text-gray-200 hover:bg-gray-700 rounded-md transition-colors" onclick="setLanguage('es', event)">
+                            </button>
+                            <button class="flex items-center w-full px-3 py-2 text-sm text-gray-200 hover:bg-gray-700 rounded-md transition-colors" onclick="setLanguage('es', event)">
                                  <img src="https://flagcdn.com/w40/es.png" alt="Spanish flag" class="w-5 h-auto mr-3 rounded-sm">
                                 <span>Español</span>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
                 
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-white">
+                    <button id="mobile-menu-button" class="text-white p-2 -mr-2" aria-label="Menü öffnen" aria-expanded="false">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                     </button>
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden">
-            <a href="https://uebermich.aykolino.de" class="block py-3 px-4 text-sm text-gray-200 hover:bg-gray-800" data-translate-key="navAbout" data-goatcounter-click="nav-mobil-ueber-mich">Über mich</a>
-            <a href="mailto:ayko.tiedtke2@yahoo.de" class="block py-3 px-4 text-sm text-gray-200 hover:bg-gray-800" data-translate-key="navContact" data-goatcounter-click="nav-mobil-kontakt">Kontakt</a>
-            <div class="px-4 pt-3 pb-1 border-t border-gray-700">
+        <div id="mobile-menu" class="hidden md:hidden bg-[#0a0a0a] border-b border-gray-800">
+            <a href="https://uebermich.aykolino.de" class="block py-3 px-4 text-sm text-gray-200 hover:bg-gray-800" data-translate-key="navAbout">Über mich</a>
+            <a href="mailto:ayko.tiedtke2@yahoo.de" class="block py-3 px-4 text-sm text-gray-200 hover:bg-gray-800" data-translate-key="navContact">Kontakt</a>
+            <div class="px-4 pt-3 pb-3 border-t border-gray-800">
                 <p class="text-xs text-gray-400 mb-2" data-translate-key="languageLabelMobile">Sprache:</p>
-                <a href="#" class="flex items-center w-full py-2 text-sm text-gray-200 hover:bg-gray-800" onclick="setLanguage('de', event)">
+                <button class="flex items-center w-full py-2 text-sm text-gray-200 hover:bg-gray-800" onclick="setLanguage('de', event)">
                      <img src="https://flagcdn.com/w40/de.png" alt="German flag" class="w-5 h-auto mr-3 rounded-sm"> Deutsch
-                </a>
-                <a href="#" class="flex items-center w-full py-2 text-sm text-gray-200 hover:bg-gray-800" onclick="setLanguage('en', event)">
+                </button>
+                <button class="flex items-center w-full py-2 text-sm text-gray-200 hover:bg-gray-800" onclick="setLanguage('en', event)">
                      <img src="https://flagcdn.com/w40/gb.png" alt="British flag" class="w-5 h-auto mr-3 rounded-sm"> English
-                </a>
-                <a href="#" class="flex items-center w-full py-2 text-sm text-gray-200 hover:bg-gray-800" onclick="setLanguage('fr', event)">
+                </button>
+                <button class="flex items-center w-full py-2 text-sm text-gray-200 hover:bg-gray-800" onclick="setLanguage('fr', event)">
                      <img src="https://flagcdn.com/w40/fr.png" alt="French flag" class="w-5 h-auto mr-3 rounded-sm"> Français
-                </a>
-                <a href="#" class="flex items-center w-full py-2 text-sm text-gray-200 hover:bg-gray-800" onclick="setLanguage('es', event)">
+                </button>
+                <button class="flex items-center w-full py-2 text-sm text-gray-200 hover:bg-gray-800" onclick="setLanguage('es', event)">
                      <img src="https://flagcdn.com/w40/es.png" alt="Spanish flag" class="w-5 h-auto mr-3 rounded-sm"> Español
-                </a>
+                </button>
             </div>
         </div>
     </nav>
@@ -210,7 +186,7 @@
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
-        <header class="flex flex-col justify-center items-center text-center pt-32 pb-24">
+        <header class="flex flex-col justify-center items-center text-center pt-32 pb-16">
             <div class="max-w-4xl">
                 <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight fade-in-up" data-translate-key="heroTitle">
                     Ihre Vision, unser Code: <span class="gradient-text">Intelligente Web-Lösungen</span>
@@ -218,102 +194,125 @@
                 <p class="mt-6 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto fade-in-up" style="transition-delay: 150ms;" data-translate-key="heroSubtitle">
                     Smarte KI, kluges Prompt Engineering – Ihre Workflows neu gedacht. Automatisieren, beschleunigen, begeistern.
                 </p>
-                <div class="mt-12 fade-in-up" style="transition-delay: 300ms;">
-                    <a href="https://mbups-projekt.aykolino.de" class="cta-button inline-block text-white font-bold text-lg px-8 py-4 rounded-full" data-translate-key="heroCta" data-goatcounter-click="cta-hero-mbups">
-                        Zum MBUPS-Projekt
-                    </a>
-                    <p class="mt-4 text-gray-400 text-sm tracking-widest uppercase" data-translate-key="heroComingSoon">…more Projects coming soon</p>
-                </div>
             </div>
         </header>
 
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl fade-in-up" data-translate-key="toolsTitle">
-                Ein kleiner Tool Überblick:
-            </h2>
-        </div>
-
-        <div id="slider-component-wrapper" class="relative max-w-7xl mx-auto">
-            <div class="absolute inset-y-0 left-0 z-10 flex items-center -ml-4 md:-ml-8">
-                <button id="scroll-left" class="bg-gray-800/50 hover:bg-gray-700/80 transition-all text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg backdrop-blur-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-                </button>
-            </div>
-            <div class="absolute inset-y-0 right-0 z-10 flex items-center -mr-4 md:-mr-8">
-                 <button id="scroll-right" class="bg-gray-800/50 hover:bg-gray-700/80 transition-all text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg backdrop-blur-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-                </button>
+        <section id="tools" class="pt-8 pb-16">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl fade-in-up" data-translate-key="toolsTitle">
+                    Mein Tool-Arsenal
+                </h2>
+                <p class="mt-4 text-gray-400 max-w-2xl mx-auto fade-in-up" data-translate-key="toolsSubtitle">
+                    Effiziente kleine Helfer, die deinen digitalen Alltag vereinfachen.
+                </p>
             </div>
 
-            <div id="slider-container" class="slider-container flex overflow-x-auto snap-x snap-mandatory scroll-smooth py-8 -mx-4 px-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
                 
-                <a href="https://utm-generator.aykolino.de" class="snap-center block flex-shrink-0 w-full sm:w-1/2 lg:w-1/3" data-goatcounter-click="app-card-utm-generator">
-                    <div class="slider-card bg-gray-900/50 border border-gray-700/50 rounded-2xl overflow-hidden h-full flex flex-col">
-                        <div class="aspect-[3/4] bg-gradient-to-br from-blue-500/20 to-violet-500/20 flex items-center justify-center">
-                            <img src="Bild_2025-10-08_103949329.png" alt="UTM-Generator Vorschau" class="w-full h-full object-cover">
+                <a href="https://utm-generator.aykolino.de" class="tool-card-wrapper group relative block p-[1px] rounded-2xl bg-gray-800 hover:bg-gradient-to-b hover:from-blue-500 hover:to-purple-500 transition-all duration-300 fade-in-up">
+                    <div class="absolute inset-0 bg-gradient-to-b from-blue-500 to-purple-500 opacity-0 group-hover:opacity-20 rounded-2xl transition-opacity blur-xl"></div>
+                    <div class="relative h-full bg-[#0d0d0d] rounded-[15px] p-8 flex flex-col transition-all">
+                        <div class="tool-icon-bg w-14 h-14 rounded-xl bg-gray-800/50 border border-gray-700/50 flex items-center justify-center mb-6 transition-colors duration-300 text-blue-400 group-hover:text-white">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
                         </div>
-                        <div class="p-6 flex-grow flex flex-col">
-                            <h3 class="text-xl font-bold text-white mb-2" data-translate-key="utmTitle">UTM-Generator</h3>
-                            <p class="text-gray-400 text-base mb-4 flex-grow" data-translate-key="utmDesc">Erstellt schnell und fehlerfrei UTM-Parameter für präzises Kampagnen-Tracking.</p>
-                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3" data-translate-key="utmTitle">UTM Generator</h3>
+                        <p class="text-gray-400 text-sm flex-grow leading-relaxed" data-translate-key="utmDesc">Erstellt schnell und fehlerfrei UTM-Parameter für präzises Kampagnen-Tracking.</p>
                     </div>
                 </a>
 
-                <a href="https://html-translator.aykolino.de" class="snap-center block flex-shrink-0 w-full sm:w-1/2 lg:w-1/3" data-goatcounter-click="app-card-html-translator">
-                    <div class="slider-card bg-gray-900/50 border border-gray-700/50 rounded-2xl overflow-hidden h-full flex flex-col">
-                        <div class="aspect-video bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center">
-                            <img src="Bild_2025-10-08_103517085.png" alt="Projekt HTML-Übersetzer Vorschau" class="w-full h-full object-cover">
+                <a href="https://seo-generator.aykolino.de" class="tool-card-wrapper group relative block p-[1px] rounded-2xl bg-gray-800 hover:bg-gradient-to-b hover:from-blue-500 hover:to-purple-500 transition-all duration-300 fade-in-up">
+                    <div class="absolute inset-0 bg-gradient-to-b from-blue-500 to-purple-500 opacity-0 group-hover:opacity-20 rounded-2xl transition-opacity blur-xl"></div>
+                    <div class="relative h-full bg-[#0d0d0d] rounded-[15px] p-8 flex flex-col transition-all">
+                        <div class="tool-icon-bg w-14 h-14 rounded-xl bg-gray-800/50 border border-gray-700/50 flex items-center justify-center mb-6 transition-colors duration-300 text-purple-400 group-hover:text-white">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                         </div>
-                        <div class="p-6 flex-grow flex flex-col">
-                            <h3 class="text-xl font-bold text-white mb-2" data-translate-key="htmlTitle">HTML-Translator</h3>
-                            <p class="text-gray-400 text-base flex-grow" data-translate-key="htmlDesc">Übersetzt Texte innerhalb von HTML-Code, ohne die Struktur zu zerstören.</p>
-                            <p class="text-sm text-gray-500" data-translate-key="htmlLongDesc">Der HTML-Translator ist das perfekte Tool für alle, die Texte innerhalb von HTML-Code schnell, präzise und strukturerhaltend übersetzen möchten. Egal ob Sie mehrsprachige Websites betreiben, Blogartikel lokalisieren oder E-Commerce-Inhalte anpassen – der HTML-Translator übersetzt Ihre Inhalte ohne die HTML-Struktur zu beschädigen.</p>
-                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3" data-translate-key="seoTitle">SEO Text Generator</h3>
+                        <p class="text-gray-400 text-sm flex-grow leading-relaxed" data-translate-key="seoDesc">Schnell & einfach SEO-optimierte Texte generieren lassen mit integrierter KI.</p>
                     </div>
                 </a>
 
-                <a href="https://seo-generator.aykolino.de" class="snap-center block flex-shrink-0 w-full sm:w-1/2 lg:w-1/3" data-goatcounter-click="app-card-seo-generator">
-                    <div class="slider-card bg-gray-900/50 border border-gray-700/50 rounded-2xl overflow-hidden h-full flex flex-col">
-                       <div class="aspect-video bg-gradient-to-br from-teal-500/20 to-cyan-500/20 flex items-center justify-center">
-                            <img src="Bild_2025-10-09_103638126.png" alt="Seo-Generator Vorschau" class="w-full h-full object-cover">
+                <a href="#" class="tool-card-wrapper group relative block p-[1px] rounded-2xl bg-gray-800 hover:bg-gradient-to-b hover:from-blue-500 hover:to-purple-500 transition-all duration-300 fade-in-up">
+                    <div class="absolute inset-0 bg-gradient-to-b from-blue-500 to-purple-500 opacity-0 group-hover:opacity-20 rounded-2xl transition-opacity blur-xl"></div>
+                    <div class="relative h-full bg-[#0d0d0d] rounded-[15px] p-8 flex flex-col transition-all">
+                        <div class="tool-icon-bg w-14 h-14 rounded-xl bg-gray-800/50 border border-gray-700/50 flex items-center justify-center mb-6 transition-colors duration-300 text-green-400 group-hover:text-white">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                         </div>
-                        <div class="p-6 flex-grow flex flex-col">
-                            <h3 class="text-xl font-bold text-white mb-2" data-translate-key="seoTitle">SEO-Generator</h3>
-                            <p class="text-gray-400 text-base flex-grow" data-translate-key="seoDesc">Schnell & einfach SEO-optimierte Texte generieren lassen.</p>
-                             <p class="text-sm text-gray-500" data-translate-key="seoLongDesc">Der SEO-Generator ist das perfekte Tool für alle, die unkomplizeirt & schnell, einen perfekten SEO-optimierten Text erstellen möchten. Die hinterlegte Google-API ist perfekt dafür!</p>
-                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3" data-translate-key="excelTitle">Excel Checker</h3>
+                        <p class="text-gray-400 text-sm flex-grow leading-relaxed" data-translate-key="excelDesc">Überprüfe und bereinige deine Excel-Datensätze schnell und effizient.</p>
                     </div>
                 </a>
-                
-                <a href="https://aykolino.de" class="snap-center block flex-shrink-0 w-full sm:w-1/2 lg:w-1/3" data-goatcounter-click="app-card-coming-soon">
-                    <div class="slider-card bg-gray-900/50 border border-gray-700/50 rounded-2xl overflow-hidden h-full flex flex-col">
-                       <div class="aspect-video bg-gradient-to-br from-orange-500/20 to-amber-500/20 flex items-center justify-center">
-                            <img src="Gemini_Generated_Image_pbe85qpbe85qpbe8 (1) (1).png" alt="Weitere Ideen Vorschau" class="w-full h-full object-cover">
+
+                <a href="https://html-translator.aykolino.de" class="tool-card-wrapper group relative block p-[1px] rounded-2xl bg-gray-800 hover:bg-gradient-to-b hover:from-blue-500 hover:to-purple-500 transition-all duration-300 fade-in-up">
+                    <div class="absolute inset-0 bg-gradient-to-b from-blue-500 to-purple-500 opacity-0 group-hover:opacity-20 rounded-2xl transition-opacity blur-xl"></div>
+                    <div class="relative h-full bg-[#0d0d0d] rounded-[15px] p-8 flex flex-col transition-all">
+                        <div class="tool-icon-bg w-14 h-14 rounded-xl bg-gray-800/50 border border-gray-700/50 flex items-center justify-center mb-6 transition-colors duration-300 text-pink-400 group-hover:text-white">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
                         </div>
-                        <div class="p-6 flex-grow flex flex-col">
-                            <h3 class="text-xl font-bold text-white mb-2" data-translate-key="comingSoonTitle">Coming soon..</h3>
-                            <p class="text-gray-400 text-base flex-grow" data-translate-key="comingSoonDesc">Coming soon...</p>
+                        <h3 class="text-xl font-bold text-white mb-3" data-translate-key="htmlTitle">HTML Translator</h3>
+                        <p class="text-gray-400 text-sm flex-grow leading-relaxed" data-translate-key="htmlDesc">Übersetzt Texte innerhalb von HTML-Code, ohne die Struktur zu zerstören.</p>
+                    </div>
+                </a>
+
+                <a href="#" class="tool-card-wrapper group relative block p-[1px] rounded-2xl bg-gray-800 hover:bg-gradient-to-b hover:from-blue-500 hover:to-purple-500 transition-all duration-300 fade-in-up">
+                    <div class="absolute inset-0 bg-gradient-to-b from-blue-500 to-purple-500 opacity-0 group-hover:opacity-20 rounded-2xl transition-opacity blur-xl"></div>
+                    <div class="relative h-full bg-[#0d0d0d] rounded-[15px] p-8 flex flex-col transition-all">
+                        <div class="tool-icon-bg w-14 h-14 rounded-xl bg-gray-800/50 border border-gray-700/50 flex items-center justify-center mb-6 transition-colors duration-300 text-yellow-400 group-hover:text-white">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                         </div>
+                        <h3 class="text-xl font-bold text-white mb-3" data-translate-key="encrypterTitle">HTML Encrypter</h3>
+                        <p class="text-gray-400 text-sm flex-grow leading-relaxed" data-translate-key="encrypterDesc">Verschlüssele deinen HTML-Code, um ihn vor einfachem Kopieren zu schützen.</p>
                     </div>
                 </a>
 
             </div>
-        </div>
+        </section>
 
-        <footer class="text-center py-10 mt-20 border-t border-gray-800">
-            <p class="text-gray-500" data-translate-key="footerText">
-                &copy; <span id="year"></span> AykolinoApps. Mit Leidenschaft.
-            </p>
-            <p class="text-xs text-gray-600 mt-2" data-translate-key="footerDisclaimer">
-                Diese Domain wird nicht für gewerbliche zwecke genutzt.
-            </p>
-        </footer>
+        <section class="max-w-4xl mx-auto mt-10 mb-20 px-4 text-center fade-in-up">
+            <div class="p-10 rounded-2xl bg-gray-900/60 border border-gray-700/50 shadow-2xl relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative z-10">
+                    <h3 class="text-2xl font-bold text-white mb-4" data-translate-key="suggestionsTitle">Fehlt dir ein wichtiges Tool?</h3>
+                    <p class="text-gray-400 mb-8 max-w-2xl mx-auto" data-translate-key="suggestionsDesc">
+                        Ich bin immer auf der Suche nach neuen Herausforderungen und Tools, die den digitalen Alltag erleichtern. Lass mich wissen, was du brauchst, und vielleicht ist es schon bald hier verfügbar!
+                    </p>
+                    <a href="mailto:ayko.tiedtke2@yahoo.de" class="inline-block text-white font-semibold border border-purple-500/50 hover:bg-purple-500/20 px-8 py-3 rounded-full transition-all duration-300 hover:scale-105" data-translate-key="suggestionsCta">
+                        Idee einreichen
+                    </a>
+                </div>
+            </div>
+        </section>
     </div>
 
+    <footer class="border-t border-gray-800 bg-[#0a0a0a]">
+        <div class="container mx-auto px-4 py-10 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                
+                <div class="text-center md:text-left">
+                    <p class="text-gray-400 text-sm" data-translate-key="footerText">
+                        &copy; <span id="year-footer-dynamic"></span> AykolinoApps. Mit Leidenschaft.
+                    </p>
+                    <p class="text-xs text-gray-600 mt-2" data-translate-key="footerDisclaimer">
+                        Diese Domain wird nicht für gewerbliche Zwecke genutzt.
+                    </p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-gray-400">
+                    <a href="/impressum.html" class="hover:text-purple-400 transition-colors" data-translate-key="footerImprint">Impressum</a>
+                    <a href="/datenschutz.html" class="hover:text-purple-400 transition-colors" data-translate-key="footerPrivacy">Datenschutz</a>
+                    <a href="/agb.html" class="hover:text-purple-400 transition-colors" data-translate-key="footerTerms">AGB</a>
+                    <a href="mailto:ayko.tiedtke2@yahoo.de" class="hover:text-purple-400 transition-colors" data-translate-key="footerContact">Kontakt</a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // --- Translations-Objekt ---
+        // --- Translations-Objekt erweitert (Title, Meta-Desc & Badges) ---
         const translations = {
             'de': {
+                pageTitle: 'AykolinoApps | Innovative Web-Tools & Prozessoptimierung',
+                pageDesc: 'Entdecken Sie maßgeschneiderte Web-Anwendungen von AykolinoApps, die Ihren digitalen Workflow revolutionieren. Sparen Sie Zeit und steigern Sie die Effizienz mit smarten Tools.',
                 langName: 'DE',
                 flagUrl: 'https://flagcdn.com/w40/de.png',
                 navAbout: 'Über mich',
@@ -321,23 +320,32 @@
                 languageLabelMobile: 'Sprache:',
                 heroTitle: 'Ihre Vision, unser Code: <span class="gradient-text">Intelligente Web-Lösungen</span>',
                 heroSubtitle: 'Smarte KI, kluges Prompt Engineering – Ihre Workflows neu gedacht. Automatisieren, beschleunigen, begeistern.',
-                heroCta: 'Zum MBUPS-Projekt',
-                heroComingSoon: '…mehr Projekte folgen bald',
-                toolsTitle: 'Ein kleiner Tool Überblick:',
-                utmTitle: 'UTM-Generator',
+                toolsTitle: 'Mein Tool-Arsenal',
+                toolsSubtitle: 'Effiziente kleine Helfer, die deinen digitalen Alltag vereinfachen.',
+                badgeComingSoon: 'Bald verfügbar',
+                utmTitle: 'UTM Generator',
                 utmDesc: 'Erstellt schnell und fehlerfrei UTM-Parameter für präzises Kampagnen-Tracking.',
-                htmlTitle: 'HTML-Translator',
+                seoTitle: 'SEO Text Generator',
+                seoDesc: 'Schnell & einfach SEO-optimierte Texte generieren lassen mit integrierter KI.',
+                excelTitle: 'Excel Checker',
+                excelDesc: 'Überprüfe und bereinige deine Excel-Datensätze schnell und effizient.',
+                htmlTitle: 'HTML Translator',
                 htmlDesc: 'Übersetzt Texte innerhalb von HTML-Code, ohne die Struktur zu zerstören.',
-                htmlLongDesc: 'Der HTML-Translator ist das perfekte Tool für alle, die Texte innerhalb von HTML-Code schnell, präzise und strukturerhaltend übersetzen möchten. Egal ob Sie mehrsprachige Websites betreiben, Blogartikel lokalisieren oder E-Commerce-Inhalte anpassen – der HTML-Translator übersetzt Ihre Inhalte ohne die HTML-Struktur zu beschädigen.',
-                seoTitle: 'SEO-Generator',
-                seoDesc: 'Schnell & einfach SEO-optimierte Texte generieren lassen.',
-                seoLongDesc: 'Der SEO-Generator ist das perfekte Tool für alle, die unkompliziert & schnell, einen perfekten SEO-optimierten Text erstellen möchten. Die hinterlegte Google-API ist perfekt dafür!',
-                comingSoonTitle: 'Kommt bald..',
-                comingSoonDesc: 'Kommt bald...',
-                footerText: '© <span id="year-footer"></span> AykolinoApps. Mit Leidenschaft.',
-                footerDisclaimer: 'Diese Domain wird nicht für gewerbliche Zwecke genutzt.'
+                encrypterTitle: 'HTML Encrypter',
+                encrypterDesc: 'Verschlüssele deinen HTML-Code, um ihn vor einfachem Kopieren zu schützen.',
+                suggestionsTitle: 'Fehlt dir ein wichtiges Tool?',
+                suggestionsDesc: 'Ich bin immer auf der Suche nach neuen Herausforderungen und Tools, die den digitalen Alltag erleichtern. Lass mich wissen, was du brauchst, und vielleicht ist es schon bald hier verfügbar!',
+                suggestionsCta: 'Idee einreichen',
+                footerText: '© <span id="year-footer-dynamic"></span> AykolinoApps. Mit Leidenschaft.',
+                footerDisclaimer: 'Diese Domain wird nicht für gewerbliche Zwecke genutzt.',
+                footerImprint: 'Impressum',
+                footerPrivacy: 'Datenschutz',
+                footerTerms: 'AGB',
+                footerContact: 'Kontakt'
             },
             'en': {
+                pageTitle: 'AykolinoApps | Innovative Web Tools & Process Optimization',
+                pageDesc: 'Discover custom web applications by AykolinoApps that revolutionize your digital workflow. Save time and increase efficiency with smart tools.',
                 langName: 'EN',
                 flagUrl: 'https://flagcdn.com/w40/gb.png',
                 navAbout: 'About Me',
@@ -345,71 +353,112 @@
                 languageLabelMobile: 'Language:',
                 heroTitle: 'Your Vision, Our Code: <span class="gradient-text">Intelligent Web Solutions</span>',
                 heroSubtitle: 'Smart AI, clever prompt engineering – your workflows reimagined. Automate, accelerate, inspire.',
-                heroCta: 'To the MBUPS Project',
-                heroComingSoon: '…more projects coming soon',
-                toolsTitle: 'A Brief Tool Overview:',
+                toolsTitle: 'My Tool Arsenal',
+                toolsSubtitle: 'Efficient little helpers to simplify your digital daily life.',
+                badgeComingSoon: 'Coming Soon',
                 utmTitle: 'UTM Generator',
                 utmDesc: 'Quickly and accurately creates UTM parameters for precise campaign tracking.',
+                seoTitle: 'SEO Text Generator',
+                seoDesc: 'Generate SEO-optimized texts quickly & easily with integrated AI.',
+                excelTitle: 'Excel Checker',
+                excelDesc: 'Check and clean up your Excel datasets quickly and efficiently.',
                 htmlTitle: 'HTML Translator',
                 htmlDesc: 'Translates text within HTML code without breaking the structure.',
-                htmlLongDesc: 'The HTML Translator is the perfect tool for anyone who wants to translate text within HTML code quickly, precisely, and while preserving the structure. Whether you operate multilingual websites, localize blog articles, or adapt e-commerce content – the HTML Translator translates your content without damaging the HTML structure.',
-                seoTitle: 'SEO Generator',
-                seoDesc: 'Generate SEO-optimized texts quickly & easily.',
-                seoLongDesc: 'The SEO Generator is the perfect tool for anyone who wants to create a perfect SEO-optimized text quickly and easily. The integrated Google API is perfect for this!',
-                comingSoonTitle: 'Coming soon..',
-                comingSoonDesc: 'Coming soon...',
-                footerText: '© <span id="year-footer"></span> AykolinoApps. With passion.',
-                footerDisclaimer: 'This domain is not used for commercial purposes.'
+                encrypterTitle: 'HTML Encrypter',
+                encrypterDesc: 'Encrypt your HTML code to protect it from simple copying.',
+                suggestionsTitle: 'Missing an important tool?',
+                suggestionsDesc: 'I am always looking for new challenges and tools that make digital life easier. Let me know what you need, and maybe it will be available here soon!',
+                suggestionsCta: 'Submit idea',
+                footerText: '© <span id="year-footer-dynamic"></span> AykolinoApps. With passion.',
+                footerDisclaimer: 'This domain is not used for commercial purposes.',
+                footerImprint: 'Imprint',
+                footerPrivacy: 'Privacy Policy',
+                footerTerms: 'Terms of Service',
+                footerContact: 'Contact'
             },
             'fr': {
+                pageTitle: 'AykolinoApps | Outils Web Innovants & Optimisation des Processus',
+                pageDesc: 'Découvrez des applications web sur mesure par AykolinoApps qui révolutionnent votre flux de travail numérique.',
                 langName: 'FR',
                 flagUrl: 'https://flagcdn.com/w40/fr.png',
                 navAbout: 'À propos de moi',
                 navContact: 'Contact',
                 languageLabelMobile: 'Langue:',
-                heroTitle: 'Votre Vision, Notre Code: <span class="gradient-text">Solutions Web Intelligentes</span>',
-                heroSubtitle: 'IA intelligente, prompt engineering astucieux – vos flux de travail réinventés. Automatiser, accélérer, inspirer.',
-                heroCta: 'Vers le projet MBUPS',
-                heroComingSoon: '…plus de projets à venir bientôt',
-                toolsTitle: 'Un aperçu des outils:',
+                heroTitle: 'Votre Vision, Notre Code: <span class="gradient-text">Solutions Web</span>',
+                heroSubtitle: 'IA intelligente, prompt engineering astucieux – vos flux de travail réinventés.',
+                toolsTitle: 'Mon Arsenal d\'Outils',
+                toolsSubtitle: 'De petits assistants efficaces pour simplifier votre quotidien numérique.',
+                badgeComingSoon: 'Bientôt disponible',
                 utmTitle: 'Générateur UTM',
-                utmDesc: 'Crée rapidement et sans erreur des paramètres UTM pour un suivi de campagne précis.',
+                utmDesc: 'Crée rapidement des paramètres UTM pour un suivi de campagne précis.',
+                seoTitle: 'Générateur SEO',
+                seoDesc: 'Générez facilement des textes optimisés pour le SEO avec l\'IA.',
+                excelTitle: 'Vérificateur Excel',
+                excelDesc: 'Vérifiez et nettoyez vos données Excel rapidement et efficacement.',
                 htmlTitle: 'Traducteur HTML',
                 htmlDesc: 'Traduit le texte dans le code HTML sans en détruire la structure.',
-                htmlLongDesc: "Le Traducteur HTML est l'outil parfait pour tous ceux qui souhaitent traduire du texte au sein d'un code HTML de manière rapide, précise et en préservant la structure. Que vous gériez des sites web multilingues, localisiez des articles de blog ou adaptiez du contenu e-commerce, le Traducteur HTML traduit vos contenus sans endommager la structure HTML.",
-                seoTitle: 'Générateur SEO',
-                seoDesc: 'Générez rapidement et facilement des textes optimisés pour le SEO.',
-                seoLongDesc: "Le Générateur SEO est l'outil parfait pour tous ceux qui veulent créer un texte perfectly optimisé pour le SEO de manière simple et rapide. L'API Google intégrée est parfaite pour cela !",
-                comingSoonTitle: 'Bientôt disponible..',
-                comingSoonDesc: 'Bientôt disponible...',
-                footerText: '© <span id="year-footer"></span> AykolinoApps. Avec passion.',
-                footerDisclaimer: "Ce domaine n'est pas utilisé à des fins commerciales."
+                encrypterTitle: 'Crypteur HTML',
+                encrypterDesc: 'Cryptez votre code HTML pour le protéger contre la copie.',
+                suggestionsTitle: 'Il vous manque un outil important ?',
+                suggestionsDesc: 'Je suis toujours à la recherche de nouveaux défis et d\'outils qui facilitent le quotidien numérique. Faites-moi savoir ce dont vous avez besoin !',
+                suggestionsCta: 'Soumettre une idée',
+                footerText: '© <span id="year-footer-dynamic"></span> AykolinoApps. Avec passion.',
+                footerDisclaimer: "Ce domaine n'est pas utilisé à des fins commerciales.",
+                footerImprint: 'Mentions légales',
+                footerPrivacy: 'Confidentialité',
+                footerTerms: 'CGV',
+                footerContact: 'Contact'
             },
             'es': {
+                pageTitle: 'AykolinoApps | Herramientas Web Innovadoras',
+                pageDesc: 'Descubre aplicaciones web a medida de AykolinoApps que revolucionan tu flujo de trabajo digital.',
                 langName: 'ES',
                 flagUrl: 'https://flagcdn.com/w40/es.png',
                 navAbout: 'Sobre mí',
                 navContact: 'Contacto',
                 languageLabelMobile: 'Idioma:',
-                heroTitle: 'Tu Visión, Nuestro Código: <span class="gradient-text">Soluciones Web Inteligentes</span>',
-                heroSubtitle: 'IA inteligente, prompt engineering astuto – tus flujos de trabajo reinventados. Automatizar, acelerar, inspirar.',
-                heroCta: 'Al Proyecto MBUPS',
-                heroComingSoon: '…más proyectos próximamente',
-                toolsTitle: 'Un breve resumen de herramientas:',
+                heroTitle: 'Tu Visión, Nuestro Código: <span class="gradient-text">Soluciones Web</span>',
+                heroSubtitle: 'IA inteligente, prompt engineering astuto – tus flujos de trabajo reinventados.',
+                toolsTitle: 'Mi Arsenal de Herramientas',
+                toolsSubtitle: 'Pequeños ayudantes eficientes para simplificar tu día a día digital.',
+                badgeComingSoon: 'Próximamente',
                 utmTitle: 'Generador UTM',
-                utmDesc: 'Crea parámetros UTM de forma rápida y sin errores para un seguimiento preciso de campañas.',
+                utmDesc: 'Crea parámetros UTM rápidamente para un seguimiento preciso de campañas.',
+                seoTitle: 'Generador SEO',
+                seoDesc: 'Genera textos optimizados para SEO fácilmente con IA.',
+                excelTitle: 'Comprobador Excel',
+                excelDesc: 'Verifica y limpia tus conjuntos de datos de Excel de forma rápida y eficiente.',
                 htmlTitle: 'Traductor HTML',
                 htmlDesc: 'Traduce texto dentro del código HTML sin romper la estructura.',
-                htmlLongDesc: 'El Traductor HTML es la herramienta perfecta para cualquiera que desee traducir texto dentro de código HTML de forma rápida, precisa y conservando la structure. Ya sea que gestiones sitios web multilingües, localices artículos de blog o adaptes contenido de comercio electrónico, el Traductor HTML traduce tu contenido sin dañar la estructura HTML.',
-                seoTitle: 'Generador SEO',
-                seoDesc: 'Genera textos optimizados para SEO de forma rápida y sencilla.',
-                seoLongDesc: 'El Generador SEO es la herramienta perfecta para cualquiera que quiera crear un texto perfectamente optimizado para SEO de forma rápida y sencilla. ¡La API de Google integrada es perfecta para ello!',
-                comingSoonTitle: 'Próximamente..',
-                comingSoonDesc: 'Próximamente...',
-                footerText: '© <span id="year-footer"></span> AykolinoApps. Con pasión.',
-                footerDisclaimer: 'Este dominio no se utiliza con fines comerciales.'
+                encrypterTitle: 'Encriptador HTML',
+                encrypterDesc: 'Encripta tu código HTML para protegerlo de copias simples.',
+                suggestionsTitle: '¿Te falta una herramienta importante?',
+                suggestionsDesc: 'Siempre estoy buscando nuevos desafíos y herramientas que faciliten el día a día digital. ¡Hazme saber qué necesitas!',
+                suggestionsCta: 'Enviar idea',
+                footerText: '© <span id="year-footer-dynamic"></span> AykolinoApps. Con pasión.',
+                footerDisclaimer: 'Este dominio no se utiliza con fines comerciales.',
+                footerImprint: 'Aviso Legal',
+                footerPrivacy: 'Privacidad',
+                footerTerms: 'Términos',
+                footerContact: 'Contacto'
             }
         };
+
+        // --- Logik für den durchlaufenden Tab-Titel (Marquee) ---
+        let titleScrollInterval;
+        function startTitleScroller(text) {
+            // Falls schon ein Intervall läuft, stoppen wir es, bevor wir ein neues starten
+            clearInterval(titleScrollInterval);
+            
+            // Abstandshalter zwischen den Durchläufen
+            let scrollText = text + " ✦ "; 
+            
+            titleScrollInterval = setInterval(() => {
+                // Den ersten Buchstaben ans Ende setzen
+                scrollText = scrollText.substring(1) + scrollText[0];
+                document.title = scrollText;
+            }, 250); // Geschwindigkeit (250 Millisekunden)
+        }
 
         // --- Haupt-Logik ---
         document.addEventListener('DOMContentLoaded', () => {
@@ -421,20 +470,26 @@
             const header = document.getElementById('main-header');
             
             window.setLanguage = function(lang, event) {
-                // --- GoatCounter Tracking ---
                 if (window.goatcounter) {
-                    window.goatcounter.count({
-                        path: 'lang-select-' + lang, // z.B. 'lang-select-de'
-                        event: true
-                    });
+                    window.goatcounter.count({ path: 'lang-select-' + lang, event: true });
                 }
-                // --- Ende GoatCounter ---
 
                 if (event) event.preventDefault();
                 if (!translations[lang]) return;
 
                 localStorage.setItem('language', lang);
                 document.documentElement.lang = lang;
+
+                // Titel und Meta-Description anpassen (Wichtig für SEO/User Experience beim Wechsel)
+                const pageTitle = translations[lang].pageTitle || translations['de'].pageTitle;
+                
+                // Lauftext starten!
+                startTitleScroller(pageTitle);
+
+                const metaDesc = document.querySelector('meta[name="description"]');
+                if (metaDesc && translations[lang].pageDesc) {
+                    metaDesc.content = translations[lang].pageDesc;
+                }
 
                 document.querySelectorAll('[data-translate-key]').forEach(el => {
                     const key = el.getAttribute('data-translate-key');
@@ -443,13 +498,9 @@
                     }
                 });
 
-                // Stelle sicher, dass das Jahr im Footer korrekt aktualisiert wird (war ein potenzieller Bug in deinem Original)
-                const yearSpan = document.getElementById('year') || document.querySelector('[data-translate-key="footerText"] span');
-                if (yearSpan) {
-                     // Setze die ID, falls sie fehlt, um sie konsistent zu machen
-                    yearSpan.id = 'year-footer'; 
-                    yearSpan.textContent = new Date().getFullYear();
-                }
+                // Update Footer Year
+                const yearSpans = document.querySelectorAll('#year-footer-dynamic');
+                yearSpans.forEach(span => span.textContent = new Date().getFullYear());
 
                 const currentLangDesktop = document.getElementById('current-lang-desktop');
                 const currentFlagDesktop = document.getElementById('current-flag-desktop');
@@ -459,49 +510,40 @@
                     currentFlagDesktop.alt = `Flag of ${lang}`;
                 }
 
-                if(langSwitcherDropdown) langSwitcherDropdown.classList.remove('open');
-                if(mobileMenu) mobileMenu.classList.add('hidden');
+                if(langSwitcherDropdown) {
+                    langSwitcherDropdown.classList.remove('open');
+                    langSwitcherButton.setAttribute('aria-expanded', 'false');
+                }
+                if(mobileMenu) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                }
             }
 
             const savedLang = localStorage.getItem('language') || 'de';
             window.setLanguage(savedLang);
 
+            // Toggle Language Dropdown (inklusive ARIA Updates)
             if (langSwitcherButton) {
                 langSwitcherButton.addEventListener('click', (event) => {
                     event.stopPropagation();
-                    
-                    // --- GoatCounter Tracking ---
-                    if (window.goatcounter) {
-                        const willBeOpen = !langSwitcherDropdown.classList.contains('open');
-                        window.goatcounter.count({
-                            path: willBeOpen ? 'lang-switcher-desktop-open' : 'lang-switcher-desktop-close',
-                            event: true
-                        });
-                    }
-                    // --- Ende GoatCounter ---
-                    
-                    langSwitcherDropdown.classList.toggle('open');
+                    const isOpen = langSwitcherDropdown.classList.toggle('open');
+                    langSwitcherButton.setAttribute('aria-expanded', isOpen);
                 });
             }
 
             window.addEventListener('click', () => {
                 if (langSwitcherDropdown && langSwitcherDropdown.classList.contains('open')) {
                     langSwitcherDropdown.classList.remove('open');
+                    langSwitcherButton.setAttribute('aria-expanded', 'false');
                 }
             });
             
+            // Toggle Mobile Menu (inklusive ARIA Updates)
             if (mobileMenuButton) {
                 mobileMenuButton.addEventListener('click', () => {
-                    // --- GoatCounter Tracking ---
-                    if (window.goatcounter) {
-                        const willBeOpen = mobileMenu.classList.contains('hidden');
-                        window.goatcounter.count({
-                            path: willBeOpen ? 'mobile-menu-open' : 'mobile-menu-close',
-                            event: true
-                        });
-                    }
-                    // --- Ende GoatCounter ---
-                    mobileMenu.classList.toggle('hidden');
+                    const isHidden = mobileMenu.classList.toggle('hidden');
+                    mobileMenuButton.setAttribute('aria-expanded', !isHidden);
                 });
             }
 
@@ -513,6 +555,7 @@
                 }
             });
 
+            // Fade-in Animation Logic
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -522,59 +565,7 @@
             }, { threshold: 0.1 });
 
             document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
-            
-            // Slider Logic
-            const sliderWrapper = document.getElementById('slider-component-wrapper');
-            if (sliderWrapper && !sliderWrapper.dataset.initialized) {
-                const slider = sliderWrapper.querySelector('#slider-container');
-                const scrollLeftBtn = sliderWrapper.querySelector('#scroll-left');
-                const scrollRightBtn = sliderWrapper.querySelector('#scroll-right');
-
-                const updateButtons = () => {
-                    if (!slider) return;
-                    const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
-                    
-                    scrollLeftBtn.style.display = slider.scrollLeft > 1 ? 'flex' : 'none';
-                    scrollRightBtn.style.display = slider.scrollLeft < maxScrollLeft - 1 ? 'flex' : 'none';
-                };
-
-                const scrollSlider = (direction) => {
-                    const card = slider.querySelector('a');
-                    if (card) {
-                        const scrollAmount = card.offsetWidth + parseInt(getComputedStyle(slider).gap);
-                        slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-                    }
-                };
-                
-                if (scrollLeftBtn && scrollRightBtn && slider) {
-                    scrollLeftBtn.addEventListener('click', () => {
-                        // --- GoatCounter Tracking ---
-                        if (window.goatcounter) {
-                            window.goatcounter.count({ path: 'slider-scroll-left', event: true });
-                        }
-                        // --- Ende GoatCounter ---
-                        scrollSlider(-1);
-                    });
-                    scrollRightBtn.addEventListener('click', () => {
-                         // --- GoatCounter Tracking ---
-                        if (window.goatcounter) {
-                            window.goatcounter.count({ path: 'slider-scroll-right', event: true });
-                        }
-                        // --- Ende GoatCounter ---
-                        scrollSlider(1);
-                    });
-                    slider.addEventListener('scroll', updateButtons, { passive: true });
-                
-                    setTimeout(updateButtons, 100); 
-                    window.addEventListener('resize', updateButtons);
-
-                    sliderWrapper.dataset.initialized = 'true';
-                }
-            }
         });
     </script>
 </body>
 </html>
-
-
-
